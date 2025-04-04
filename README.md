@@ -40,11 +40,11 @@ Example:
 You are a bionformatics researcher focused on developing computational approaches for single cell omics data. You want to test your tool out on Alzheimer's disease case but you are not an expert in this disease. You can use this RAG system to search for this disease to get started on your research.
 
 ```python
-python pubmed_rag_ollama.py --search_topic "Alzheimer's disease scRNAseq" --max_results 50 --llm_model llama3.2 --embedding_model=llama3.2
+python pubmed_rag_ollama.py --search_topic "Alzheimer's disease scRNAseq" --max_results 50 --llm_model llama3.2 --embedding_model llama3.2
 ```
 
 You are a wet lab researcher seeking to explore gene network analysis on your dataset and would like to know how they generally work. You can use this RAG system to give a general overview of the methdologies and workflows so you can better understand the results from your analysis.
 
 ```python
-python pubmed_rag_ollama.py --search_topic "scRNAseq gene regulatory networks" --max_results 50 --llm_model llama3.2 --embedding_model=llama3.2
+python pubmed_rag_ollama.py --search_topic "scRNAseq gene regulatory networks" --max_results 50 --llm_model llama3.2 --embedding_model llama3.2
 ```
