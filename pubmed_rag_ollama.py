@@ -7,6 +7,7 @@ import requests
 from typing import List, Dict, Any
 import time
 from bs4 import BeautifulSoup
+import argparse
 
 
 from langchain.text_splitter import RecursiveCharacterTextSplitter
@@ -458,19 +459,27 @@ def answer_query(rag_system, query: str):
     return
 # Example usage
 if __name__ == "__main__":
+    parser = argparse.ArgumentParser(description="PubMed RAG with Ollama models")
+    parser.add_argument("--search_topic", type=str, default="scRNAseq methods for gene regulatory network analysis", help="PubMed search topic")
+    parser.add_argument("--max_results", type=int, default=50, help="Maximum number of articles to fetch")
+    parser.add_argument("--llm_model", type=str, default="llama3.2", help="Ollama LLM model identifier")
+    parser.add_argument("--embedding_model", type=str, default="llama3.2", help="Ollama embedding model identifier")
+    args = parser.parse_args()
+
     # Ensure you have enough GPU memory or use a smaller model
-    search_topic = "scRNAseq methods for gene regulatory network analysis"
+    search_topic = args.search_topic
     
     # Create RAG system with Ollama models
     rag_system = create_pubmed_ollama_rag_system(
         search_topic, 
-        max_results=1,
-        llm_model="llama3.2",
-        embedding_model="llama3.2"
+        max_results=args.max_results,
+        llm_model=args.llm_model,
+        embedding_model=args.embedding_model
     )
     # input query
-    query = "What are the best methods for analyzing gene regulatory networks using single-cell RNA sequencing data?"
-    answer_query(rag_system, query)
+    # query = "What are the best methods for analyzing gene regulatory networks using single-cell RNA sequencing data?")
+    # answer_query(rag_system, query)
+    answer_query(rag_system, "Hello, tell me what reserach articles are you knowledgeable in?")
     while True:
         query = input("> ")
         if query.lower() == "exit":
